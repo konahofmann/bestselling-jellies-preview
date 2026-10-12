@@ -65,7 +65,9 @@
       a.textContent = 'Order now';
     } else {
       a.href = cfg.instagramUrl;
-      a.textContent = 'Ask on Instagram';
+      a.textContent = 'Order via Instagram';
+      a.target = '_blank';
+      a.rel = 'noopener';
       a.className += ' ghost';
     }
     slot.appendChild(a);

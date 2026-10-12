@@ -1,13 +1,16 @@
 (function () {
-  var els = document.querySelectorAll('.reveal');
+  var items = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window)) {
-    els.forEach(function (e) { e.classList.add('in'); });
+    items.forEach(function (el) { el.classList.add('in'); });
     return;
   }
   var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (en) {
-      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
     });
-  }, { threshold: 0.15 });
-  els.forEach(function (e) { io.observe(e); });
+  }, { threshold: 0.01, rootMargin: '0px 0px -6% 0px' });
+  items.forEach(function (el) { io.observe(el); });
+
+  var y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
 })();
